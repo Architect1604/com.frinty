@@ -1,0 +1,19 @@
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Build outputs
+bin/
+target/
+out/
+build/
+
+# OS & logs
+.DS_Store
+logs/
+*.log
+
+# IDEs you might try later
+.vscode/
+.idea/
