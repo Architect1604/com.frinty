@@ -1,5 +1,7 @@
 package com.frinty.util;
 
+import java.util.ArrayList;
+
 public class NumberUtils {
 
 	
@@ -13,5 +15,56 @@ public class NumberUtils {
 	}
 		
 		
+	public static void printIntArray(int[] arr) {
+		for (int i=0; i<arr.length; i++) {
+			System.out.println(arr[i]);
+		}
+	}
+	
+	public static void printIntArrayList(ArrayList<Integer> arrayList) {
+		for (int i=0; i<arrayList.size();i++) {
+			System.out.println(arrayList.get(i));
+		}
+	}
+	
+	public static ArrayList<Integer> sortArrayList (ArrayList<Integer> arrayList) {
+		boolean sorted = false;
+		int n = arrayList.size();
+		
+		while (!sorted) {
+			sorted = true;
+			
+			for (int i=0; i<n-1; i++) {
+				
+				if (arrayList.get(i)>arrayList.get(i+1)) {
+					
+					//sort
+					int temp = -1;
+					temp = arrayList.get(i);
+					arrayList.set(i, arrayList.get(i+1));
+					arrayList.set(i+1, temp);	
+					sorted = false;
+				}
+				
+			}
+			n--;
+		}
+		
+		
+		return arrayList;
+	}
+	
+	public static boolean isNumInArray (int num, int[] arr) {
+		boolean check = false;
+		for (int i=0; i<arr.length; i++) {
+			if (arr[i]==num) {
+				check = true;
+				break;
+			}
+		}
+ 		
+		return check;
+	}
+	
 }
 

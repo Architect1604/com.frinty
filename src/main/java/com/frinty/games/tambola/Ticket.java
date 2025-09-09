@@ -182,8 +182,8 @@ public class Ticket {
 		//Step 7: Validation #3: Does line have 5?
 	}
 	
-	
-	
+	//This method has been moved to NumberUtils.java class in com.frinty.util package
+	/*
 	public boolean isNumInArray (int num, int[] arr) {
 		boolean check = false;
 		for (int i=0; i<arr.length; i++) {
@@ -194,7 +194,7 @@ public class Ticket {
 		}
  		
 		return check;
-	}
+	}*/
 	
 	
 	public int [] generatePositions() {
@@ -205,14 +205,14 @@ public class Ticket {
 		
 		
 		int randomNum = 0;
-		Ticket t = new Ticket();
+		
 		
 		int i = 0;
 		
 		while (i<5) {
 			//NumberUtils.generateRandom(0,8);
 			randomNum = NumberUtils.generateRandom(0,8);
-			if (isNumInArray(randomNum,positions)) {
+			if (NumberUtils.isNumInArray(randomNum,positions)) {
 				continue;
 			} else {
 				positions [i] = randomNum;
@@ -339,7 +339,7 @@ public class Ticket {
 		int[] positions = generatePositions();
 		
 		System.out.println("Positions from position array are:");
-		t.printIntArray(positions);
+		NumberUtils.printIntArray(positions);
 		int f=0;
 		int numsinticket=0;
 		for (int i=0; i<positions.length; i++) {
@@ -427,13 +427,13 @@ public class Ticket {
 		return numsInLine;
 	}
 	
-	
-	
+	//This method has been moved to NumberUtils.java class in com.frinty.util package
+	/*
 	public void printIntArray(int[] arr) {
 		for (int i=0; i<arr.length; i++) {
 			System.out.println(arr[i]);
 		}
-	}
+	}*/
 	
 	//This method populates a single line (at the moment) of the tambola ticket
 	//It selects 5 out of 9 possible positions in the line
@@ -533,7 +533,7 @@ public class Ticket {
 				}
 			}
 			if (nums.size()>1) {
-				t.sortArrayList(nums);
+				NumberUtils.sortArrayList(nums);
 				
 				for (int k = 0; k<rowPositions.size(); k++) {
 					arrTicket[rowPositions.get(k)][col] = nums.get(k);
@@ -572,7 +572,7 @@ public class Ticket {
 					}
 				}
 				
-				nums = t.sortArrayList(nums);
+				nums = NumberUtils.sortArrayList(nums);
 				for (int j=0; j<nums.size(); j++) {
 					arrTicket[rowPositions.get(j)][i] = nums.get(j);
 				}
@@ -600,9 +600,9 @@ public class Ticket {
 	    return nums;
 	}*/
 	
-	
+	//This method has been moved to NumberUtils.java class in com.frinty.util package
 	//this method sorts using (efficient) bubble sort
-	public ArrayList<Integer> sortArrayList (ArrayList<Integer> arrayList) {
+	/*public ArrayList<Integer> sortArrayList (ArrayList<Integer> arrayList) {
 		boolean sorted = false;
 		int n = arrayList.size();
 		
@@ -627,7 +627,7 @@ public class Ticket {
 		
 		
 		return arrayList;
-	}
+	}*/
 
 	
 	//This method generates a random integer number between the specified range
