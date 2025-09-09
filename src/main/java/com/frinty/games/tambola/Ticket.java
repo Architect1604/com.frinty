@@ -1,5 +1,6 @@
 package com.frinty.games.tambola;
 import java.util.ArrayList;
+import com.frinty.util.NumberUtils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -209,7 +210,8 @@ public class Ticket {
 		int i = 0;
 		
 		while (i<5) {
-			randomNum = t.generateRandom(0, 8);
+			//NumberUtils.generateRandom(0,8);
+			randomNum = NumberUtils.generateRandom(0,8);
 			if (isNumInArray(randomNum,positions)) {
 				continue;
 			} else {
@@ -261,31 +263,31 @@ public class Ticket {
 		
 		switch (pos) {
 		case 0:
-			num = t.generateRandom(0, 8);
+			num = NumberUtils.generateRandom(0,9);
 			break;
 		case 1:
-			num = t.generateRandom(10,19);
+			num = NumberUtils.generateRandom(10,19);
 			break;
 		case 2:
-			num = t.generateRandom(20, 29);
+			num = NumberUtils.generateRandom(20,29);
 			break;
 		case 3:
-			num = t.generateRandom(30, 39);
+			num = NumberUtils.generateRandom(30,39);
 			break;
 		case 4:
-			num = t.generateRandom(40, 49);
+			num = NumberUtils.generateRandom(40,49);
 			break;
 		case 5:
-			num = t.generateRandom(50, 59);
+			num = NumberUtils.generateRandom(50,59);
 			break;
 		case 6:
-			num = t.generateRandom(60, 69);
+			num = NumberUtils.generateRandom(60,69);
 			break;
 		case 7:
-			num = t.generateRandom(70, 79);
+			num = NumberUtils.generateRandom(70,79);
 			break;
 		case 8:
-			num = t.generateRandom(80, 90);
+			num = NumberUtils.generateRandom(80,90);
 			break;
 	}
 		
@@ -630,6 +632,8 @@ public class Ticket {
 	
 	//This method generates a random integer number between the specified range
 	//The range is defined through the parameters lower and higher (inclusive)
+	//Moved to NumberUtils class (under package com.frinty.util)
+	/*
 	public int generateRandom(int lower, int higher) {
 		int randomNum=0;
 		//System.out.println("Lower is " + lower);
@@ -637,7 +641,7 @@ public class Ticket {
 		randomNum = lower + (int) (Math.random()*(higher-lower+1));
 		
 		return randomNum;
-	}
+	}*/
 	
 	//This method is constructed and finished, for now
 	public void printTicket() {
