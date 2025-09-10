@@ -16,37 +16,24 @@ public class Host {
 	//generate 90 numbers:
 	
 	
+	
 	public ArrayList<Integer> call90 () {
 		ArrayList<Integer> nums = new ArrayList<Integer>();
 		
 		for (int i=0; i<90; i++) {
 			int num = 0;
-			System.out.println("Num is " + num + " and i is " + i);
-			while (nums.contains(num)) {
+			boolean contains = true;
+			while (contains) {
 				num = NumberUtils.generateRandom(1, 90);
-				System.out.println("Num is " + num + " and i is" + i);
-			}
-		}
-		
-		return nums;
-	}
-	
-	public ArrayList<Integer> call90_2 () {
-		ArrayList<Integer> nums = new ArrayList<Integer>();
-		int num = 0;
-		for (int i=0; i<90; i++) {
-			
-			System.out.println("Initial Num is " + num + " and i is " + i);
-			if (i==0) {
-				num = NumberUtils.generateRandom(1, 90);
-				System.out.println("At i=0 Num is " + num);
-			} else {
-				while (nums.contains(num)) {
-					num = NumberUtils.generateRandom(1, 90);
-					System.out.println("At i=" + i + "Num is " + num);
+				if (nums.contains(num)) {
+					contains = true;
+				} else {
+					contains = false;
 				}
 			}
+			nums.add(num);
 		}
+		
 		
 		return nums;
 	}
