@@ -28,18 +28,72 @@ public class Host {
 	
 	static ArrayList<Integer> nums = new ArrayList<Integer>();
 	
+	
+	private static ArrayList<Integer> bowl = new ArrayList<Integer>();
+	private ArrayList<Integer> board = new ArrayList<Integer>();
+	
+	
 	public static void main (String[] args) {
 		Host host = new Host();
+		//System.out.println(NumberUtils.generateRandom(0, 05));
+		host.populateBowl();
+		NumberUtils.printIntArrayList(bowl);
+		for (int i=0; i<90; i++) {
+			System.out.println(host.drawNum());
+		}
+		//System.out.println("First number at index 0 of bowl is " + bowl.get(4));
+		//NumberUtils.printIntArrayList(bowl);
+		
+		
+		
+		
 		/*for (int i=0; i<90; i++) {
 			System.out.println("The called number is " + host.call());	
-		}*/
+		}
 		host.call();
 		NumberUtils.printIntArrayList(nums);
 		//NumberUtils.printIntArrayList(host.call90());
 		//System.out.println("Chosen number is "+host.execute90(89));
+		*/
+		 
 	}
 	
 	//generate 90 numbers:
+	
+	//TODO: remove after troubleshooting, or change i range back to <90
+	public void populateBowl() {
+		bowl = new ArrayList<Integer>();
+		board = new ArrayList<Integer>();
+		for (int i=0; i<10; i++) {
+			bowl.add(i+1);
+		}
+		System.out.println("Bowl size is " + bowl.size() + " so bowl.size-1 is " + (bowl.size()-1));
+	}
+	
+	public void populateBowl_2() {
+		bowl = new ArrayList<Integer>();
+		board = new ArrayList<Integer>();
+		for (int i=0; i<90; i++) {
+			bowl.add(i+1);
+		}
+	}
+	
+	public int drawNum() {
+		int index = 0;
+		int num = 0;
+		
+		index = NumberUtils.generateRandom(0, bowl.size()-1);
+		System.out.println("Index is " + index);
+		num = bowl.get(index);
+		System.out.println("Num is " + num);
+		board.add(num);
+		bowl.remove(num);
+		System.out.println("Size of bowl right now is " + bowl.size());
+		return num;
+	}
+	
+	
+	
 	
 	public ArrayList<Integer> call90 () {
 		ArrayList<Integer> nums = new ArrayList<Integer>();

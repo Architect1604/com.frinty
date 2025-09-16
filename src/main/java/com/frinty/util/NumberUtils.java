@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class NumberUtils {
 
-	
+	//This method generates a random number between the specified range
+	//It takes integer parameters 'lower' and 'higher' and generates a random integer between them (inclusive of both of them)
 	public static int generateRandom(int lower, int higher) {
 			int randomNum=0;
 			//System.out.println("Lower is " + lower);
