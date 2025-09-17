@@ -22,6 +22,14 @@ public class NumberUtils {
 		}
 	}
 	
+	public static void print2DIntArray (int[][] arr) {
+		for (int i=0; i<arr.length; i++) {
+			for (int j=0; j<arr[i].length; j++) {
+				System.out.println(arr[i][j]);
+			}
+		}
+	}
+	
 	public static void printIntArrayList(ArrayList<Integer> arrayList) {
 		for (int i=0; i<arrayList.size();i++) {
 			System.out.println(arrayList.get(i));

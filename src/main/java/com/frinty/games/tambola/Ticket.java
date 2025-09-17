@@ -11,7 +11,6 @@ public class Ticket {
 	int[][] arrTicket = new int[3][9];
 	
 	
-	//TODO remove later
 	public static void main (String[] args) {
 		Ticket t = new Ticket();
 		
