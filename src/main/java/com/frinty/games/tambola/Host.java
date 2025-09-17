@@ -30,7 +30,29 @@ public class Host {
 	
 	
 	private static ArrayList<Integer> bowl = new ArrayList<Integer>();
-	private ArrayList<Integer> board = new ArrayList<Integer>();
+	
+	//getter/setter method for bowl, but board is static
+	/*
+	public static ArrayList<Integer> getBowl() {
+		return bowl;
+	}
+
+	public static void setBowl(ArrayList<Integer> bowl) {
+		Host.bowl = bowl;
+	}*/
+
+	private static ArrayList<Integer> board = new ArrayList<Integer>();
+	
+	//getter/setter method for board, but board is static
+	/*public ArrayList<Integer> getBoard() {
+		return board;
+	}
+
+	public void setBoard(ArrayList<Integer> board) {
+		this.board = board;
+	}*/
+
+	
 	
 	
 	public static void main (String[] args) {
@@ -41,6 +63,8 @@ public class Host {
 		for (int i=0; i<90; i++) {
 			System.out.println(host.drawNum());
 		}
+		System.out.println("Board is:");
+		NumberUtils.printIntArrayList(board);
 		//System.out.println("First number at index 0 of bowl is " + bowl.get(4));
 		//NumberUtils.printIntArrayList(bowl);
 		
@@ -64,19 +88,15 @@ public class Host {
 	public void populateBowl() {
 		bowl = new ArrayList<Integer>();
 		board = new ArrayList<Integer>();
-		for (int i=0; i<10; i++) {
+		for (int i=0; i<90; i++) {
+			
 			bowl.add(i+1);
 		}
+			
 		System.out.println("Bowl size is " + bowl.size() + " so bowl.size-1 is " + (bowl.size()-1));
 	}
 	
-	public void populateBowl_2() {
-		bowl = new ArrayList<Integer>();
-		board = new ArrayList<Integer>();
-		for (int i=0; i<90; i++) {
-			bowl.add(i+1);
-		}
-	}
+	
 	
 	public int drawNum() {
 		int index = 0;
@@ -87,14 +107,14 @@ public class Host {
 		num = bowl.get(index);
 		System.out.println("Num is " + num);
 		board.add(num);
-		bowl.remove(num);
+		bowl.remove(index);
 		System.out.println("Size of bowl right now is " + bowl.size());
 		return num;
 	}
 	
 	
 	
-	
+	/*
 	public ArrayList<Integer> call90 () {
 		ArrayList<Integer> nums = new ArrayList<Integer>();
 		
@@ -153,7 +173,7 @@ public class Host {
 		}
 		nums.add(num);
 		return num;
-	}
+	}*/
 	
 	/*
 	public int call() {
