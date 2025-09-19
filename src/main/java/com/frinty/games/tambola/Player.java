@@ -5,27 +5,34 @@ public class Player {
 
 	Ticket t = new Ticket();
 	
-	int[][] arrTicket = new int [3][9];
+	static int[][] playerTicket = new int [3][9];
 	static int[][] arrChecker = new int [3][9];
 	
 	public static void main(String[] args) {
 		Player p = new Player();
-		
+		//Ticket t = new Ticket();
 		p.populateArrChecker();
+		p.testCheckNumber();
+		/*System.out.println("arrTicket is: ");
+		NumberUtils.print2DIntArray(p.t.arrTicket);
+		System.out.println("playerTicket is: ");
+		NumberUtils.print2DIntArray(playerTicket);
+		*/
+		
+		System.out.println("ArrChecker is: ");
 		NumberUtils.print2DIntArray(arrChecker);
+		
 	}
 	
 	
 	//This method sets the value of all numbers in the checking array arrChecker to -1
 	public void populateArrChecker() {
-		arrTicket = t.createTicket();
+		playerTicket = t.createTicket();
 		for (int i=0; i<3; i++) {
 			for (int j=0; j<9; j++) {
 				//Try to make this method the only one for initialising array with -1 and 0
 				//Use if statement to check arrTicket
-				//But before that, need to figure out how to access populated arrTicket
-				//if ()
-				if (arrTicket[i][j]!=0) {
+				if (playerTicket[i][j]!=00) {
 					arrChecker[i][j] = 0;
 				} else {
 					arrChecker[i][j]=-1;
@@ -37,10 +44,37 @@ public class Player {
 		}
 	}
 	
+	public boolean testCheckNumber() {
+		boolean checked = false;
+		if(this.checkNumber(1)) {
+			checked = true;
+		}
+		return checked;
+	}
+	
 	public boolean checkNumber(int num) {
 		boolean checked = false;
 		
+		//to set rows and columns of arrChecker according to location of num in arrTicket
+		//int row = 0;
+		//int column = 0;
 		
+		//search for given number in 2d array Ticket
+		for (int i=0; i<3; i++) {
+			for (int j=0; j<9; j++) {
+				if (playerTicket[i][j]==num) {
+					//row = i;
+					//column = j;
+					arrChecker[i][j] = 1;
+					checked = true;
+					break;
+				}
+			}
+		}
+		
+		if (!checked) {
+			System.out.println("Number not found in ticket");
+		}
 		
 		return checked;
 	}

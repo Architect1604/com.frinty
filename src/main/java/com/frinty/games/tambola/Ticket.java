@@ -18,17 +18,17 @@ public class Ticket {
 	}
 	
 	public int[][] createTicket() {
-		Ticket t = new Ticket();
+		//Ticket t = new Ticket();
 		
 		
-		while (t.isColumnEmpty()) {
-			t.arrTicket = new int[3][9];
-			t.populateTicket();
+		while (isColumnEmpty()) {
+			this.arrTicket = new int[3][9];
+			populateTicket();
 		}
-		t.sortTicket();
-		t.printTicket();
-		
-		return arrTicket;
+		sortTicket();
+		printTicket();
+		System.out.println();
+		return this.arrTicket;
 	}
 	
 	public int[][] populateTicket() {
@@ -42,7 +42,7 @@ public class Ticket {
 			//System.out.println("@@@@@@@@@ Created line "+i + " @@@@@@@@@");
 		}
 		
-		return arrTicket;
+		return this.arrTicket;
 	}
 	
 	
@@ -167,7 +167,7 @@ public class Ticket {
 	public void createLine(int l) {
 		//System.out.println("Entered createLine method");
 		
-		Ticket t = new Ticket();
+		//Ticket t = new Ticket();
 		int num = 0;
 		int[] positions = generatePositions();
 		
@@ -178,14 +178,14 @@ public class Ticket {
 		for (int i=0; i<positions.length; i++) {
 
 			//generate number
-			num = t.generateNumInLine(positions[i]);
+			num = this.generateNumInLine(positions[i]);
 			//System.out.println("In for loop for the positions[i]=" +positions[i] + ", generated num="+num+ " forcount="+f++);
 
 			//int w=0;
 			while (!isUnique(num, positions[i])) {
 				//System.out.println("In while loop"+ w++); 
 				//if(w==100) {break;}
-				num = t.generateNumInLine(positions[i]);
+				num = this.generateNumInLine(positions[i]);
 				//System.out.println("The number generated for the line is " + num);
 			}
 			
