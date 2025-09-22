@@ -26,52 +26,43 @@ public class Host {
 	//int [] nums = new int [90];
 	//int counter = 1;
 	
-	static ArrayList<Integer> nums = new ArrayList<Integer>();
+	//static ArrayList<Integer> nums = new ArrayList<Integer>();
 	
 	
-	private static ArrayList<Integer> bowl = new ArrayList<Integer>();
+	private final ArrayList<Integer> bowl = new ArrayList<Integer>();
 	
-	//getter/setter method for bowl, but board is static
-	/*
-	public static ArrayList<Integer> getBowl() {
-		return bowl;
-	}
-
-	public static void setBowl(ArrayList<Integer> bowl) {
-		Host.bowl = bowl;
-	}*/
-
-	private static ArrayList<Integer> board = new ArrayList<Integer>();
 	
-	//getter/setter method for board, but board is static
-	/*public ArrayList<Integer> getBoard() {
-		return board;
-	}
-
-	public void setBoard(ArrayList<Integer> board) {
-		this.board = board;
-	}*/
-
+	private final ArrayList<Integer> board = new ArrayList<Integer>();
+	
+	
 	
 	
 	
 	public static void main (String[] args) {
-		Host host = new Host();
+		new Host().startGame();
+	}
+	
+	
+	public void startGame() {
+		System.out.println("The host has started the game");
 		
-		host.populateBowl();
-		NumberUtils.printIntArrayList(bowl);
+		//Player p = new Player();
+		
+		populateBowl();
+		//NumberUtils.printIntArrayList(bowl);
+		System.out.println();
 		for (int i=0; i<90; i++) {
-			System.out.println(host.drawNum());
+			System.out.println(drawNum());
 		}
-		System.out.println("Board is:");
-		NumberUtils.printIntArrayList(board);
 	}
 	
 	//generate 90 numbers: This can be done by populating the "bowl", and then drawing numbers one at a time (by calling the method drawNum each time)
 	//This method inserts numbers from 1-90 (all inclusive, and not repeating) into the static arrayList bowl
 	public void populateBowl() {
-		bowl = new ArrayList<Integer>();
-		board = new ArrayList<Integer>();
+		//bowl = new ArrayList<Integer>();
+		//board = new ArrayList<Integer>();
+		bowl.clear();
+		board.clear();
 		for (int i=0; i<90; i++) {
 			bowl.add(i+1);
 		}			
