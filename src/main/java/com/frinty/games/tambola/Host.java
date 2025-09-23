@@ -46,14 +46,40 @@ public class Host {
 	public void startGame() {
 		System.out.println("The host has started the game");
 		
-		//Player p = new Player();
+		Player p = new Player();
 		
 		populateBowl();
 		//NumberUtils.printIntArrayList(bowl);
 		System.out.println();
-		for (int i=0; i<90; i++) {
-			System.out.println(drawNum());
+		java.util.Scanner scanner = new java.util.Scanner(System.in);
+		while(!bowl.isEmpty()) {
+			//just for testing purposes, to be able to print arrChecker every 5 times
+			int i=0;
+			
+			int called = drawNum();
+			System.out.println("Called number is "+called);
+			//Action after called number
+			
+			System.out.println("Type tick to tick, or leave blank to pass");
+			String check = scanner.nextLine().trim().toLowerCase();
+			boolean tick;
+			if (check.equals("tick")) {
+				tick = p.checkNumber(called);
+				System.out.println("Claim?");
+				String claim = scanner.nextLine().trim().toLowerCase();
+				
+				//TODO develop code block after prize functionality
+				if (claim.equals("")) {
+					
+				}
+			}
+			if (i%5==0) {
+				NumberUtils.print2DIntArray(p.getArrChecker());
+			}
+			//just for testing purposes, to be able to print arrChecker every 5 times
+			i++;
 		}
+		scanner.close();
 	}
 	
 	//generate 90 numbers: This can be done by populating the "bowl", and then drawing numbers one at a time (by calling the method drawNum each time)
