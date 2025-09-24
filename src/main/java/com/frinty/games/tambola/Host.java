@@ -54,7 +54,7 @@ public class Host {
 		java.util.Scanner scanner = new java.util.Scanner(System.in);
 		while(!bowl.isEmpty()) {
 			//just for testing purposes, to be able to print arrChecker every 5 times
-			int i=0;
+			//int i=0;
 			
 			int called = drawNum();
 			System.out.println("Called number is "+called);
@@ -69,15 +69,16 @@ public class Host {
 				String claim = scanner.nextLine().trim().toLowerCase();
 				
 				//TODO develop code block after prize functionality
-				if (claim.equals("")) {
-					
+				if (claim.equals("house")) {
+					System.out.println("Validate house is "+validateHouse(p));
 				}
 			}
-			if (i%5==0) {
+			
+			/*if (i%5==0) {
 				NumberUtils.print2DIntArray(p.getArrChecker());
-			}
+			}*/
 			//just for testing purposes, to be able to print arrChecker every 5 times
-			i++;
+			//i++;
 		}
 		scanner.close();
 	}
@@ -106,7 +107,26 @@ public class Host {
 		return num;
 	}
 	
-	
+	public boolean validateHouse(Player p) {
+		
+		int[][] ticket = p.getPlayerTicket();
+		int[][] checker = p.getArrChecker();
+		
+		for (int r=0; r<3; r++) {
+			for (int c=0; c<9; c++) {
+				if (ticket[r][c]!=0) {
+					if (checker[r][c]==0) {
+						return false;
+					}
+					if (!board.contains(ticket[r][c])) {
+						return false;
+					}
+				}
+			}
+		}
+		
+		return true;
+	}
 	
 	public Host() {
 		// TODO Auto-generated constructor stub

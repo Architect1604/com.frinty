@@ -96,7 +96,7 @@ public class Ticket {
 		
 		switch (pos) {
 		case 0:
-			num = NumberUtils.generateRandom(0,9);
+			num = NumberUtils.generateRandom(1,9);
 			break;
 		case 1:
 			num = NumberUtils.generateRandom(10,19);
