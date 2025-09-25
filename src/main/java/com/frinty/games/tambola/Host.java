@@ -128,6 +128,100 @@ public class Host {
 		return true;
 	}
 	
+	
+	public boolean validateFourCorners(Player p) {
+		//int [][] ticket = p.getPlayerTicket();
+		//int [][] checker = p.getArrChecker();
+		
+		int topLeft = -1;
+		int topRight = -1;
+		int bottomLeft = -1;
+		int bottomRight = -1;
+		
+		
+		//to find topLeft
+		for (int i=0; i<p.getPlayerTicket()[0].length; i++) {
+			if (p.getPlayerTicket()[0][i]!=0) {
+				topLeft = i;
+				break;
+			}
+		}
+		
+		//to find topRight
+		for (int i=p.getPlayerTicket()[0].length-1; i>=0; i--) {
+			if (p.getPlayerTicket()[0][i]!=0) {
+				topRight = i;
+				break;
+			}
+		}
+		
+		//to find bottom left
+		for (int i=0; i<p.getPlayerTicket()[2].length; i++) {
+			if (p.getPlayerTicket()[2][i]!=0) {
+				bottomLeft = i;
+				break;
+			}
+		}
+		
+		//to find bottomRight
+		for (int i=p.getPlayerTicket()[2].length-1; i>=0; i--) {
+			if (p.getPlayerTicket()[2][i]!=0) {
+				bottomRight = i;
+				break;
+			}
+		}
+		
+		//Now that all 4 locations are found, move to validation
+		
+		//validate topLeft
+		
+		//check if claimed
+		if (p.getArrChecker()[0][topLeft]!=1) {
+			return false;
+		}
+		//check if in board
+		if (!board.contains(p.getPlayerTicket()[0][topLeft])) {
+			return false;
+		}
+		
+		//validate topRight
+		if (p.getArrChecker()[0][topRight]!=1) {
+			return false;
+		}
+		//check if in board
+		if (!board.contains(p.getPlayerTicket()[0][topRight])) {
+			return false;
+		}
+		
+		//validate bottomLeft
+		
+		//check if claimed
+		if (p.getArrChecker()[2][bottomLeft]!=1) {
+			return false;
+		}
+		//check if in board
+		if (!board.contains(p.getPlayerTicket()[2][bottomLeft])) {
+			return false;
+		}
+		
+		//validate bottomRight
+		
+		//check if claimed
+		if (p.getArrChecker()[2][bottomRight]!=1) {
+			return false;
+		}
+		//check if in board
+		if (!board.contains(p.getPlayerTicket()[2][bottomRight])) {
+			return false;
+		}
+		
+
+		
+		return true;
+	}
+	
+	
+	
 	public Host() {
 		// TODO Auto-generated constructor stub
 	}
