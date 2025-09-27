@@ -3,9 +3,6 @@ import com.frinty.util.*;
 import java.util.ArrayList;
 
 public class Host {
-
-	
-	//Host host = new Host();
 	
 	//This class is the host class for playing the game Tambola. 
 	//Once players have tickets from the ticket class, they should be able to play together, which this class enables
@@ -15,33 +12,12 @@ public class Host {
 	//This class should check (validate) a ticket when a prize is claimed (e.g. house)
 	//This class should then accordingly update the status of the prizes (e.g. house gone/remaining)
 	
-	
-	//private boolean house;
-	//private boolean topLine;
-	//private boolean middleLine;
-	//private boolean bottomLine;
-	//private boolean earlyFive;
-	//private boolean fourCorners;
-	
-	//int [] nums = new int [90];
-	//int counter = 1;
-	
-	//static ArrayList<Integer> nums = new ArrayList<Integer>();
-	
-	
 	private final ArrayList<Integer> bowl = new ArrayList<Integer>();
-	
-	
 	private final ArrayList<Integer> board = new ArrayList<Integer>();
-	
-	
-	
-	
 	
 	public static void main (String[] args) {
 		new Host().startGame();
 	}
-	
 	
 	public void startGame() {
 		System.out.println("The host has started the game");
@@ -60,18 +36,19 @@ public class Host {
 			System.out.println("Called number is "+called);
 			//Action after called number
 			
-			System.out.println("Type tick to tick, or leave blank to pass");
+			System.out.println("Type t to tick, or leave blank to pass");
 			String check = scanner.nextLine().trim().toLowerCase();
 			boolean tick;
-			if (check.equals("tick")) {
+			if (check.equals("t")) {
 				tick = p.checkNumber(called);
 				System.out.println("Claim?");
 				String claim = scanner.nextLine().trim().toLowerCase();
-				
-				//TODO develop code block after prize functionality
-				if (claim.equals("house")) {
-					System.out.println("Validate house is "+validateHouse(p));
+				//prizeClaim(p, claim);
+				if (!prizeClaim(p,claim)) {
+					System.out.println("Bogey, ending game now.");
+					break;
 				}
+
 			}
 			
 			/*if (i%5==0) {
@@ -107,6 +84,39 @@ public class Host {
 		return num;
 	}
 	
+	public boolean prizeClaim(Player p, String input) {
+		boolean outcome = true;
+		boolean claim = true;
+		switch (input) {
+		case "house":
+			outcome = validateHouse(p);
+			break;
+		case "topline":
+			outcome = validateLine(p,0);
+			break;
+		case "middleline":
+			outcome = validateLine(p,1);
+			break;
+		case "bottomline":
+			outcome = validateLine(p,2);
+			break;
+		case "fourcorners":
+			outcome = validateFourCorners(p);
+			break;
+		case "earlyfive":
+			outcome = validateEarlyFive(p);
+		}
+		if (input.equals("")) {
+			System.out.println("Continuing with game");
+		} else if (outcome) {
+			System.out.println(input + " has been claimed." + input + " correct and gone - (although not gone from system yet, needs work hehe)");
+		} else {
+			claim = false;
+			System.out.println(input + " claim is false. BOGEYYYY!!!");
+		}
+		return claim;
+	}
+	
 	public boolean validateHouse(Player p) {
 		
 		int[][] ticket = p.getPlayerTicket();
@@ -130,8 +140,8 @@ public class Host {
 	
 	
 	public boolean validateFourCorners(Player p) {
-		//int [][] ticket = p.getPlayerTicket();
-		//int [][] checker = p.getArrChecker();
+		int [][] ticket = p.getPlayerTicket();
+		int [][] checker = p.getArrChecker();
 		
 		int topLeft = -1;
 		int topRight = -1;
@@ -140,32 +150,32 @@ public class Host {
 		
 		
 		//to find topLeft
-		for (int i=0; i<p.getPlayerTicket()[0].length; i++) {
-			if (p.getPlayerTicket()[0][i]!=0) {
+		for (int i=0; i<ticket[0].length; i++) {
+			if (ticket[0][i]!=0) {
 				topLeft = i;
 				break;
 			}
 		}
 		
 		//to find topRight
-		for (int i=p.getPlayerTicket()[0].length-1; i>=0; i--) {
-			if (p.getPlayerTicket()[0][i]!=0) {
+		for (int i=ticket[0].length-1; i>=0; i--) {
+			if (ticket[0][i]!=0) {
 				topRight = i;
 				break;
 			}
 		}
 		
 		//to find bottom left
-		for (int i=0; i<p.getPlayerTicket()[2].length; i++) {
-			if (p.getPlayerTicket()[2][i]!=0) {
+		for (int i=0; i<ticket[2].length; i++) {
+			if (ticket[2][i]!=0) {
 				bottomLeft = i;
 				break;
 			}
 		}
 		
 		//to find bottomRight
-		for (int i=p.getPlayerTicket()[2].length-1; i>=0; i--) {
-			if (p.getPlayerTicket()[2][i]!=0) {
+		for (int i=ticket[2].length-1; i>=0; i--) {
+			if (ticket[2][i]!=0) {
 				bottomRight = i;
 				break;
 			}
@@ -176,48 +186,85 @@ public class Host {
 		//validate topLeft
 		
 		//check if claimed
-		if (p.getArrChecker()[0][topLeft]!=1) {
+		if (checker[0][topLeft]!=1) {
 			return false;
 		}
 		//check if in board
-		if (!board.contains(p.getPlayerTicket()[0][topLeft])) {
+		if (!board.contains(ticket[0][topLeft])) {
 			return false;
 		}
 		
 		//validate topRight
-		if (p.getArrChecker()[0][topRight]!=1) {
+		if (checker[0][topRight]!=1) {
 			return false;
 		}
 		//check if in board
-		if (!board.contains(p.getPlayerTicket()[0][topRight])) {
+		if (!board.contains(ticket[0][topRight])) {
 			return false;
 		}
 		
 		//validate bottomLeft
 		
 		//check if claimed
-		if (p.getArrChecker()[2][bottomLeft]!=1) {
+		if (checker[2][bottomLeft]!=1) {
 			return false;
 		}
 		//check if in board
-		if (!board.contains(p.getPlayerTicket()[2][bottomLeft])) {
+		if (!board.contains(ticket[2][bottomLeft])) {
 			return false;
 		}
 		
 		//validate bottomRight
 		
 		//check if claimed
-		if (p.getArrChecker()[2][bottomRight]!=1) {
+		if (checker[2][bottomRight]!=1) {
 			return false;
 		}
 		//check if in board
-		if (!board.contains(p.getPlayerTicket()[2][bottomRight])) {
+		if (!board.contains(ticket[2][bottomRight])) {
 			return false;
 		}
 		
 
 		
 		return true;
+	}
+	
+	public boolean validateLine(Player p, int line) {
+		int[][] ticket = p.getPlayerTicket();
+		int[][] checker = p.getArrChecker();
+		
+		for (int i=0; i<ticket[line].length; i++) {
+			if (ticket[line][i]!=0) {
+				if (checker[line][i]!=1) {
+					return false;
+				} if (!board.contains(ticket[line][i])) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	public boolean validateEarlyFive(Player p) {
+		int count = 0;
+		int[][] ticket = p.getPlayerTicket();
+		int[][] checker = p.getArrChecker();
+		
+		for (int i=0; i<ticket.length; i++) {
+			for (int j=0; j<ticket[i].length; j++) {
+				
+				if (ticket[i][j]!=0) {
+					if (checker[i][j]==1 && board.contains(ticket[i][j])) {
+						count++;
+						if (count>=5) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
 	}
 	
 	
